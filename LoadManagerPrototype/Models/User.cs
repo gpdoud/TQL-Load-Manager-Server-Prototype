@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace LoadManagerPrototype.Models
 {
-    public class Customers
+    public class User
     {
         public int Id { get; set; }
 
         [Required, StringLength(30)]
-        public string Name { get; set; }
-
+        public string Username { get; set; }     //needs to be unique
         [Required, StringLength(30)]
-        public string Code { get; set; }            //needs to be UNIQUE
+        public string Password { get; set; }
         [StringLength(30)]
-        public string Address { get; set; }
-        [Required]
-        public Boolean Status { get; set; }
+        public string Firstname { get; set; }
+        [StringLength(30)]
+        public string Lastname { get; set; }
+        [StringLength(30)]
+        public string Email { get; set; }
     }
 }
