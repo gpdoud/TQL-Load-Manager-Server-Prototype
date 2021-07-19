@@ -23,5 +23,10 @@ namespace LoadManagerPrototype.Models
         public string Zip { get; set; }
 
         // Instruction box?
+
+        public Shed()
+        {
+
+        }
     }
 }

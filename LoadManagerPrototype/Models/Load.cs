@@ -17,6 +17,11 @@ namespace LoadManagerPrototype.Models
         public decimal PayTruckRate { get; set; }
         public decimal CustomerBillRate { get; set; }
 
+        public Load()
+        {
+
+        }
+
     }
     
 }

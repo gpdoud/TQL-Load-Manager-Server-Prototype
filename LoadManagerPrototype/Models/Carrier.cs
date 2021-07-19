@@ -21,9 +21,14 @@ namespace LoadManagerPrototype.Models
         [StringLength(10)]
         public string Zip { get; set; }
         [StringLength(30)]
-        public string phone { get; set; }
+        public string Phone { get; set; }
         [StringLength(30)]
-        public string email { get; set; }
+        public string Email { get; set; }
+
+        public Carrier()
+        {
+
+        }
 
 
     }
