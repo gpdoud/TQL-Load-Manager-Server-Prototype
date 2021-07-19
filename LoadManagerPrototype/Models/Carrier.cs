@@ -15,8 +15,21 @@ namespace LoadManagerPrototype.Models
         [StringLength(30)]
         public string Address { get; set; }
         [StringLength(30)]
-        public string phone { get; set; }
+        public string City { get; set; }
+        [StringLength(2)]
+        public string State { get; set; }
+        [StringLength(10)]
+        public string Zip { get; set; }
         [StringLength(30)]
-        public string email { get; set; }
+        public string Phone { get; set; }
+        [StringLength(30)]
+        public string Email { get; set; }
+
+        public Carrier()
+        {
+
+        }
+
+
     }
 }
