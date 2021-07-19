@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoadManagerPrototype.Models
 {
-    public class Sheds
+    public class Shed
     {
         public int Id { get; set; }
 
