@@ -15,7 +15,6 @@ namespace LoadManagerPrototype.Models
         public decimal PayTruckRate { get; set; }
         [Required]
         public decimal CustomerBillRate { get; set; }
-
         public int CustomerId { get; set; } // FK to customer
         public virtual Customer Customer { get; set; }
 
@@ -30,6 +29,12 @@ namespace LoadManagerPrototype.Models
 
         public int UserId { get; set; } // FK to user
         public virtual User User { get; set; }
+        public Load()
+       {
+         
+       }
+      
+
 
     }
     

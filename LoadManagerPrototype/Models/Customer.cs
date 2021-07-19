@@ -17,11 +17,22 @@ namespace LoadManagerPrototype.Models
         public string Code { get; set; }            //needs to be UNIQUE
         [StringLength(30)]
         public string Address { get; set; }
+        [StringLength(30)]
+        public string City { get; set; }
+        [StringLength(2)]
+        public string State { get; set; }
+        [StringLength(10)]
+        public string Zip { get; set; }
         [Required]
         public bool Status { get; set; }
 
-        public int UserId { get; set; }       //FK to Vendor
+        public int UserId { get; set; }       
 
         public virtual User User { get; set; }
+
+        public Customer()
+        {
+
+        }
     }
 }

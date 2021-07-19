@@ -20,5 +20,6 @@ namespace LoadManagerPrototype.Models
         public string Lastname { get; set; }
         [StringLength(30)]
         public string Email { get; set; }
+
     }
 }
