@@ -14,8 +14,11 @@ namespace LoadManagerPrototype.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    phone = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,7 +32,10 @@ namespace LoadManagerPrototype.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,6 +68,9 @@ namespace LoadManagerPrototype.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -83,13 +92,14 @@ namespace LoadManagerPrototype.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PoNumber = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    PayTruckRate = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    CustomerBillRate = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    PickId = table.Column<int>(type: "int", nullable: false),
                     PickShedId = table.Column<int>(type: "int", nullable: true),
+                    DropId = table.Column<int>(type: "int", nullable: false),
                     DropShedId = table.Column<int>(type: "int", nullable: true),
-                    CarrierId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    PayTruckRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerBillRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    CarrierId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,13 +109,13 @@ namespace LoadManagerPrototype.Migrations
                         column: x => x.CarrierId,
                         principalTable: "Carriers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Loads_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Loads_Sheds_DropShedId",
                         column: x => x.DropShedId,
@@ -116,12 +126,6 @@ namespace LoadManagerPrototype.Migrations
                         name: "FK_Loads_Sheds_PickShedId",
                         column: x => x.PickShedId,
                         principalTable: "Sheds",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Loads_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -156,11 +160,6 @@ namespace LoadManagerPrototype.Migrations
                 table: "Loads",
                 column: "PoNumber",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Loads_UserId",
-                table: "Loads",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Username",
