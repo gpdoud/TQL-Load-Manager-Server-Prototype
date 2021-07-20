@@ -1,4 +1,4 @@
-using LoadManagerPrototype.Data;
+﻿using LoadManagerPrototype.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +32,9 @@ namespace LoadManagerPrototype
             {
                 x.UseSqlServer(Configuration.GetConnectionString("LmDbContext"));
             });
+
+            services.AddDbContext<LoadManagerPrototypeContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("LoadManagerPrototypeContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
