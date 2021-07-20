@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LoadManagerPrototype.Models
@@ -10,10 +12,10 @@ namespace LoadManagerPrototype.Models
     {
         public int Id { get; set; }
         [Required]
-        public int PONumber { get; set; }
-        [Required]
+        public int PoNumber { get; set; }
+        [Column(TypeName = "decimal(9,2)")]
         public decimal PayTruckRate { get; set; }
-        [Required]
+        [Column(TypeName="decimal(9,2)")]
         public decimal CustomerBillRate { get; set; }
         public int CustomerId { get; set; } // FK to customer
         public virtual Customer Customer { get; set; }
@@ -26,9 +28,7 @@ namespace LoadManagerPrototype.Models
 
         public int CarrierId { get; set; } //FK to carrier
         public virtual Carrier Carrier { get; set; }
-
-        public int UserId { get; set; } // FK to user
-        public virtual User User { get; set; }
+        
         public Load()
        {
          
