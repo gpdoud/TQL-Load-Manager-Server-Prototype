@@ -17,10 +17,12 @@ namespace LoadManagerPrototype.Models
         public decimal PayTruckRate { get; set; }
         [Column(TypeName="decimal(9,2)")]
         public decimal CustomerBillRate { get; set; }
+
         public int CustomerId { get; set; } // FK to customer
         public virtual Customer Customer { get; set; }
 
-        public virtual List<Shed> Sheds { get; set; }
+        public virtual IEnumerable<Pickup> Pickups { get; set; }
+        public virtual IEnumerable<Delivery> Deliveries { get; set; }
 
         public int CarrierId { get; set; } //FK to carrier
         public virtual Carrier Carrier { get; set; }

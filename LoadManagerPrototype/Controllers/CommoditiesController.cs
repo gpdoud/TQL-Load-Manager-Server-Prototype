@@ -6,53 +6,54 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LoadManagerPrototype.Data;
+using LoadManagerPrototype.Models;
 
-namespace LoadManagerPrototype.Models
+namespace LoadManagerPrototype.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CommoditiesController : ControllerBase
     {
         private readonly LoadManagerPrototypeContext _context;
 
-        public CustomersController(LoadManagerPrototypeContext context)
+        public CommoditiesController(LoadManagerPrototypeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Customers
+        // GET: api/Commodities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
+        public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodity()
         {
-            return await _context.Customer.Include(u => u.User).ToListAsync();
+            return await _context.Commodity.ToListAsync();
         }
 
-        // GET: api/Customers/5
+        // GET: api/Commodities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(int id)
+        public async Task<ActionResult<Commodity>> GetCommodity(int id)
         {
-            var customer = await _context.Customer.Include(u=>u.User).SingleOrDefaultAsync(i => i.Id == id);
+            var commodity = await _context.Commodity.FindAsync(id);
 
-            if (customer == null)
+            if (commodity == null)
             {
                 return NotFound();
             }
 
-            return customer;
+            return commodity;
         }
 
-        // PUT: api/Customers/5
+        // PUT: api/Commodities/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(int id, Customer customer)
+        public async Task<IActionResult> PutCommodity(int id, Commodity commodity)
         {
-            if (id != customer.Id)
+            if (id != commodity.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
+            _context.Entry(commodity).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +61,7 @@ namespace LoadManagerPrototype.Models
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!CommodityExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +74,37 @@ namespace LoadManagerPrototype.Models
             return NoContent();
         }
 
-        // POST: api/Customers
+        // POST: api/Commodities
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
+        public async Task<ActionResult<Commodity>> PostCommodity(Commodity commodity)
         {
-            _context.Customer.Add(customer);
+            _context.Commodity.Add(commodity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return CreatedAtAction("GetCommodity", new { id = commodity.Id }, commodity);
         }
 
-        // DELETE: api/Customers/5
+        // DELETE: api/Commodities/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Customer>> DeleteCustomer(int id)
+        public async Task<ActionResult<Commodity>> DeleteCommodity(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
-            if (customer == null)
+            var commodity = await _context.Commodity.FindAsync(id);
+            if (commodity == null)
             {
                 return NotFound();
             }
 
-            _context.Customer.Remove(customer);
+            _context.Commodity.Remove(commodity);
             await _context.SaveChangesAsync();
 
-            return customer;
+            return commodity;
         }
 
-        private bool CustomerExists(int id)
+        private bool CommodityExists(int id)
         {
-            return _context.Customer.Any(e => e.Id == id);
+            return _context.Commodity.Any(e => e.Id == id);
         }
     }
 }

@@ -27,5 +27,11 @@ namespace LoadManagerPrototype.Data
         public DbSet<LoadManagerPrototype.Models.Driver> Driver { get; set; }
 
         public DbSet<LoadManagerPrototype.Models.Dispatcher> Dispatcher { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.Commodity> Commodity { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.Delivery> Delivery { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.Pickup> Pickup { get; set; }
     }
 }

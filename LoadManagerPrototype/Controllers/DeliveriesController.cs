@@ -6,53 +6,54 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LoadManagerPrototype.Data;
+using LoadManagerPrototype.Models;
 
-namespace LoadManagerPrototype.Models
+namespace LoadManagerPrototype.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class DeliveriesController : ControllerBase
     {
         private readonly LoadManagerPrototypeContext _context;
 
-        public CustomersController(LoadManagerPrototypeContext context)
+        public DeliveriesController(LoadManagerPrototypeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Customers
+        // GET: api/Deliveries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
+        public async Task<ActionResult<IEnumerable<Delivery>>> GetDelivery()
         {
-            return await _context.Customer.Include(u => u.User).ToListAsync();
+            return await _context.Delivery.ToListAsync();
         }
 
-        // GET: api/Customers/5
+        // GET: api/Deliveries/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(int id)
+        public async Task<ActionResult<Delivery>> GetDelivery(int id)
         {
-            var customer = await _context.Customer.Include(u=>u.User).SingleOrDefaultAsync(i => i.Id == id);
+            var delivery = await _context.Delivery.FindAsync(id);
 
-            if (customer == null)
+            if (delivery == null)
             {
                 return NotFound();
             }
 
-            return customer;
+            return delivery;
         }
 
-        // PUT: api/Customers/5
+        // PUT: api/Deliveries/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(int id, Customer customer)
+        public async Task<IActionResult> PutDelivery(int id, Delivery delivery)
         {
-            if (id != customer.Id)
+            if (id != delivery.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
+            _context.Entry(delivery).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +61,7 @@ namespace LoadManagerPrototype.Models
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!DeliveryExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +74,37 @@ namespace LoadManagerPrototype.Models
             return NoContent();
         }
 
-        // POST: api/Customers
+        // POST: api/Deliveries
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
+        public async Task<ActionResult<Delivery>> PostDelivery(Delivery delivery)
         {
-            _context.Customer.Add(customer);
+            _context.Delivery.Add(delivery);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return CreatedAtAction("GetDelivery", new { id = delivery.Id }, delivery);
         }
 
-        // DELETE: api/Customers/5
+        // DELETE: api/Deliveries/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Customer>> DeleteCustomer(int id)
+        public async Task<ActionResult<Delivery>> DeleteDelivery(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
-            if (customer == null)
+            var delivery = await _context.Delivery.FindAsync(id);
+            if (delivery == null)
             {
                 return NotFound();
             }
 
-            _context.Customer.Remove(customer);
+            _context.Delivery.Remove(delivery);
             await _context.SaveChangesAsync();
 
-            return customer;
+            return delivery;
         }
 
-        private bool CustomerExists(int id)
+        private bool DeliveryExists(int id)
         {
-            return _context.Customer.Any(e => e.Id == id);
+            return _context.Delivery.Any(e => e.Id == id);
         }
     }
 }

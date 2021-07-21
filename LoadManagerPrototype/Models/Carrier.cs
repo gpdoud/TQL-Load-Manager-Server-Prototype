@@ -25,8 +25,8 @@ namespace LoadManagerPrototype.Models
         [StringLength(100)]
         public string Email { get; set; }
 
-        public virtual List<Driver> Drivers { get; set; }
-        public virtual List<Dispatcher> Dispatchers { get; set; }
+        public virtual IEnumerable<Driver> Drivers { get; set; }
+        public virtual IEnumerable<Dispatcher> Dispatchers { get; set; }
 
         public Carrier()
         {

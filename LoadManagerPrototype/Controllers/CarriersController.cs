@@ -24,14 +24,14 @@ namespace LoadManagerPrototype.Models
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Carrier>>> GetCarrier()
         {
-            return await _context.Carrier.ToListAsync();
+            return await _context.Carrier.Include(d => d.Drivers).Include(dp => dp.Dispatchers).ToListAsync();
         }
 
         // GET: api/Carriers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Carrier>> GetCarrier(int id)
         {
-            var carrier = await _context.Carrier.FindAsync(id);
+            var carrier = await _context.Carrier.Include(d => d.Drivers).Include(dp => dp.Dispatchers).SingleOrDefaultAsync(i => i.Id == id);
 
             if (carrier == null)
             {
