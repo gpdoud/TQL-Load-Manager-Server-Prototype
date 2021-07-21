@@ -10,7 +10,7 @@ namespace LoadManagerPrototype.Models
     {
         public int Id { get; set; }
 
-        [Required, StringLength(30)]
+        [Required, StringLength(100)]
         public string Name { get; set; }
         [StringLength(30)]
         public string Address { get; set; }
@@ -22,8 +22,11 @@ namespace LoadManagerPrototype.Models
         public string Zip { get; set; }
         [StringLength(30)]
         public string Phone { get; set; }
-        [StringLength(30)]
+        [StringLength(100)]
         public string Email { get; set; }
+
+        public virtual List<Driver> Drivers { get; set; }
+        public virtual List<Dispatcher> Dispatchers { get; set; }
 
         public Carrier()
         {

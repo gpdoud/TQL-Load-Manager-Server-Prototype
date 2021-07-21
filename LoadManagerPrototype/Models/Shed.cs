@@ -10,7 +10,7 @@ namespace LoadManagerPrototype.Models
     {
         public int Id { get; set; }
 
-        [Required, StringLength(30)]
+        [Required, StringLength(100)]
         public string Name { get; set; }
 
         [StringLength(30)]

@@ -15,7 +15,7 @@ namespace LoadManagerPrototype.Models
         public string Lastname { get; set; }
         [StringLength(12)]
         public string Phone { get; set; }
-        [StringLength(50)]
+        [StringLength(100)]
         public string Email { get; set; }
         [StringLength(12)]
         public string Fax { get; set; }
