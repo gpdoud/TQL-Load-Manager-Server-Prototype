@@ -2,7 +2,7 @@
 
 namespace LoadManagerPrototype.Migrations
 {
-    public partial class addingmigration : Migration
+    public partial class noloadid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,13 +12,13 @@ namespace LoadManagerPrototype.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Address = table.Column<string>(maxLength: 30, nullable: true),
                     City = table.Column<string>(maxLength: 30, nullable: true),
                     State = table.Column<string>(maxLength: 2, nullable: true),
                     Zip = table.Column<string>(maxLength: 10, nullable: true),
                     Phone = table.Column<string>(maxLength: 30, nullable: true),
-                    Email = table.Column<string>(maxLength: 30, nullable: true)
+                    Email = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,11 +35,64 @@ namespace LoadManagerPrototype.Migrations
                     Password = table.Column<string>(maxLength: 30, nullable: false),
                     Firstname = table.Column<string>(maxLength: 30, nullable: true),
                     Lastname = table.Column<string>(maxLength: 30, nullable: true),
-                    Email = table.Column<string>(maxLength: 30, nullable: true)
+                    Email = table.Column<string>(maxLength: 100, nullable: true),
+                    IsAdmin = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dispatcher",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Firstname = table.Column<string>(maxLength: 30, nullable: false),
+                    Lastname = table.Column<string>(maxLength: 30, nullable: true),
+                    Phone = table.Column<string>(maxLength: 12, nullable: true),
+                    Email = table.Column<string>(maxLength: 100, nullable: true),
+                    Fax = table.Column<string>(maxLength: 12, nullable: true),
+                    IsCckApproved = table.Column<bool>(nullable: false),
+                    CarrierId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dispatcher", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dispatcher_Carrier_CarrierId",
+                        column: x => x.CarrierId,
+                        principalTable: "Carrier",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Driver",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Firstname = table.Column<string>(maxLength: 30, nullable: true),
+                    Lastname = table.Column<string>(maxLength: 30, nullable: true),
+                    Phone = table.Column<string>(maxLength: 12, nullable: true),
+                    Email = table.Column<string>(maxLength: 30, nullable: true),
+                    TruckNumber = table.Column<string>(maxLength: 20, nullable: true),
+                    TrailerNumber = table.Column<string>(maxLength: 20, nullable: true),
+                    Equipment = table.Column<string>(nullable: true),
+                    IsCckApproved = table.Column<bool>(nullable: false),
+                    CarrierId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Driver", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Driver_Carrier_CarrierId",
+                        column: x => x.CarrierId,
+                        principalTable: "Carrier",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,7 +101,7 @@ namespace LoadManagerPrototype.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Code = table.Column<string>(maxLength: 30, nullable: false),
                     Address = table.Column<string>(maxLength: 30, nullable: true),
                     City = table.Column<string>(maxLength: 30, nullable: true),
@@ -103,28 +156,28 @@ namespace LoadManagerPrototype.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Address = table.Column<string>(maxLength: 30, nullable: true),
                     City = table.Column<string>(maxLength: 30, nullable: true),
                     State = table.Column<string>(maxLength: 2, nullable: true),
-                    Zip = table.Column<string>(maxLength: 10, nullable: true),
-                    LoadId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shed", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Shed_Load_LoadId",
-                        column: x => x.LoadId,
-                        principalTable: "Load",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                    Zip = table.Column<string>(maxLength: 10, nullable: true)
                 });
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customer_UserId",
                 table: "Customer",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dispatcher_CarrierId",
+                table: "Dispatcher",
+                column: "CarrierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Driver_CarrierId",
+                table: "Driver",
+                column: "CarrierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Load_CarrierId",
@@ -135,15 +188,16 @@ namespace LoadManagerPrototype.Migrations
                 name: "IX_Load_CustomerId",
                 table: "Load",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shed_LoadId",
-                table: "Shed",
-                column: "LoadId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Dispatcher");
+
+            migrationBuilder.DropTable(
+                name: "Driver");
+
             migrationBuilder.DropTable(
                 name: "Shed");
 

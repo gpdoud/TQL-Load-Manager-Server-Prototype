@@ -35,13 +35,13 @@ namespace LoadManagerPrototype.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(30)")
@@ -82,8 +82,8 @@ namespace LoadManagerPrototype.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(2)")
@@ -104,6 +104,94 @@ namespace LoadManagerPrototype.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Dispatcher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CarrierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Fax")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<bool>("IsCckApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarrierId");
+
+                    b.ToTable("Dispatcher");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Driver", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CarrierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Equipment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<bool>("IsCckApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
+                    b.Property<string>("TrailerNumber")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("TruckNumber")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarrierId");
+
+                    b.ToTable("Driver");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Load", b =>
@@ -157,8 +245,8 @@ namespace LoadManagerPrototype.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(2)")
@@ -183,12 +271,15 @@ namespace LoadManagerPrototype.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(30)")
@@ -216,6 +307,20 @@ namespace LoadManagerPrototype.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Dispatcher", b =>
+                {
+                    b.HasOne("LoadManagerPrototype.Models.Carrier", null)
+                        .WithMany("Dispatchers")
+                        .HasForeignKey("CarrierId");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Driver", b =>
+                {
+                    b.HasOne("LoadManagerPrototype.Models.Carrier", null)
+                        .WithMany("Drivers")
+                        .HasForeignKey("CarrierId");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Load", b =>

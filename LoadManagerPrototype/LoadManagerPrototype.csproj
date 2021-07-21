@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210721133707_adding migration.cs" />
+    <Compile Remove="Migrations\20210721133707_adding migration.Designer.cs" />
+    <Compile Remove="Migrations\20210721160136_fixedstuff.cs" />
+    <Compile Remove="Migrations\20210721160136_fixedstuff.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
