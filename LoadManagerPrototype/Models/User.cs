@@ -20,6 +20,7 @@ namespace LoadManagerPrototype.Models
         public string Lastname { get; set; }
         [StringLength(100)]
         public string Email { get; set; }
+        public bool IsAdmin { get; set; }
 
     }
 }
