@@ -26,8 +26,14 @@ namespace LoadManagerPrototype.Models
         [Required]
         public bool Status { get; set; }
 
-        public int UserId { get; set; }       
+        [StringLength(12)]
+        public string Phone { get; set; }
+        [StringLength(100)]
+        public string Email { get; set; }
 
+
+
+        public int UserId { get; set; }       
         public virtual User User { get; set; }
 
         public Customer()

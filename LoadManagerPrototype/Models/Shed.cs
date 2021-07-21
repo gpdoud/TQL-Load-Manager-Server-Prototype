@@ -21,6 +21,12 @@ namespace LoadManagerPrototype.Models
         public string State { get; set; }
         [StringLength(10)]
         public string Zip { get; set; }
+        [StringLength(255)]
+        public string Instructions { get; set; }
+        [StringLength(12)]
+        public string Phone { get; set; }
+        [StringLength(100)]
+        public string Email { get; set; }
 
         // Instruction box?
 
