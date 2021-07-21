@@ -25,5 +25,7 @@ namespace LoadManagerPrototype.Data
         public DbSet<LoadManagerPrototype.Models.User> User { get; set; }
 
         public DbSet<LoadManagerPrototype.Models.Driver> Driver { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.Dispatcher> Dispatcher { get; set; }
     }
 }
