@@ -28,13 +28,14 @@ namespace LoadManagerPrototype
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<LmDbContext>(x =>
-            {
-                x.UseSqlServer(Configuration.GetConnectionString("LmDbContext"));
-            });
+            //services.AddDbContext<LmDbContext>(x =>
+            //{
+            //    x.UseSqlServer(Configuration.GetConnectionString("LmDbContext"));
+            //});
 
             services.AddDbContext<LoadManagerPrototypeContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("LoadManagerPrototypeContext")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,7 @@ namespace LoadManagerPrototype
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

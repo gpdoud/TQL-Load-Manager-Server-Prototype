@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoadManagerPrototype.Migrations
 {
-    [DbContext(typeof(LmDbContext))]
-    partial class LmDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(LoadManagerPrototypeContext))]
+    partial class LoadManagerPrototypeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -57,7 +57,7 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carriers");
+                    b.ToTable("Carrier");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Customer", b =>
@@ -103,7 +103,7 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Load", b =>
@@ -134,10 +134,7 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("PoNumber")
-                        .IsUnique();
-
-                    b.ToTable("Loads");
+                    b.ToTable("Load");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Shed", b =>
@@ -175,7 +172,7 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasIndex("LoadId");
 
-                    b.ToTable("Sheds");
+                    b.ToTable("Shed");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.User", b =>
@@ -209,10 +206,7 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Username")
-                        .IsUnique();
-
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Customer", b =>

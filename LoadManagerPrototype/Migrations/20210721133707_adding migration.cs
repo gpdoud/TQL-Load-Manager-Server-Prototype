@@ -2,12 +2,12 @@
 
 namespace LoadManagerPrototype.Migrations
 {
-    public partial class test2 : Migration
+    public partial class addingmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Carriers",
+                name: "Carrier",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -22,11 +22,11 @@ namespace LoadManagerPrototype.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Carriers", x => x.Id);
+                    table.PrimaryKey("PK_Carrier", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -39,11 +39,11 @@ namespace LoadManagerPrototype.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "Customer",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -59,17 +59,17 @@ namespace LoadManagerPrototype.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Customer", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_Users_UserId",
+                        name: "FK_Customer_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Loads",
+                name: "Load",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -82,23 +82,23 @@ namespace LoadManagerPrototype.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Loads", x => x.Id);
+                    table.PrimaryKey("PK_Load", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Loads_Carriers_CarrierId",
+                        name: "FK_Load_Carrier_CarrierId",
                         column: x => x.CarrierId,
-                        principalTable: "Carriers",
+                        principalTable: "Carrier",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Loads_Customers_CustomerId",
+                        name: "FK_Load_Customer_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customers",
+                        principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sheds",
+                name: "Shed",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -112,64 +112,52 @@ namespace LoadManagerPrototype.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sheds", x => x.Id);
+                    table.PrimaryKey("PK_Shed", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sheds_Loads_LoadId",
+                        name: "FK_Shed_Load_LoadId",
                         column: x => x.LoadId,
-                        principalTable: "Loads",
+                        principalTable: "Load",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_UserId",
-                table: "Customers",
+                name: "IX_Customer_UserId",
+                table: "Customer",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Loads_CarrierId",
-                table: "Loads",
+                name: "IX_Load_CarrierId",
+                table: "Load",
                 column: "CarrierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Loads_CustomerId",
-                table: "Loads",
+                name: "IX_Load_CustomerId",
+                table: "Load",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Loads_PoNumber",
-                table: "Loads",
-                column: "PoNumber",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sheds_LoadId",
-                table: "Sheds",
+                name: "IX_Shed_LoadId",
+                table: "Shed",
                 column: "LoadId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_Username",
-                table: "Users",
-                column: "Username",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sheds");
+                name: "Shed");
 
             migrationBuilder.DropTable(
-                name: "Loads");
+                name: "Load");
 
             migrationBuilder.DropTable(
-                name: "Carriers");
+                name: "Carrier");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Customer");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }
