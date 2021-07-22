@@ -21,6 +21,8 @@ namespace LoadManagerPrototype.Models
         [StringLength(12)]
         public string Fax { get; set; }
         public bool IsCckApproved { get; set; }
+
+        [Required]
         public int CarrierId { get; set; }
         [JsonIgnore]
         public Carrier Carrier { get; set; }

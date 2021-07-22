@@ -26,7 +26,7 @@ namespace LoadManagerPrototype.Models
 
         public int CarrierId { get; set; } //FK to carrier
         public virtual Carrier Carrier { get; set; }
-        
+
         public Load()
        {
          

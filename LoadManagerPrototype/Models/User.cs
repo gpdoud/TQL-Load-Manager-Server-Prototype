@@ -24,5 +24,7 @@ namespace LoadManagerPrototype.Models
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
 
+        public virtual IEnumerable<Load> Loads { get; set; }
+
     }
 }

@@ -9,10 +9,7 @@ namespace LoadManagerPrototype.Models
     public class Commodity
     {
         public int Id { get; set; }
-        [Required]
-        public int Quantity { get; set; }
-        [Required, StringLength(255)]
-        public string Unit { get; set; }
+
         [Required, StringLength(255)]
         public string Name { get; set; }
     }

@@ -18,5 +18,10 @@ namespace LoadManagerPrototype.Models
         [Required]
         public int DeliveryId { get; set; }
         public virtual Delivery delivery { get; set; }
+
+        [Required]
+        public int Quantity { get; set; }
+        [Required, StringLength(255)]
+        public string Unit { get; set; }
     }
 }

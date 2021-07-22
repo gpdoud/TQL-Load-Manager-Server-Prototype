@@ -18,5 +18,10 @@ namespace LoadManagerPrototype.Models
         [Required]
         public int PickupId { get; set; }
         public virtual Pickup pickup { get; set; }
+
+        [Required]
+        public int Quantity { get; set; }
+        [Required, StringLength(255)]
+        public string Unit { get; set; }
     }
 }

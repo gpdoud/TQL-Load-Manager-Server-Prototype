@@ -4,14 +4,16 @@ using LoadManagerPrototype.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoadManagerPrototype.Migrations
 {
     [DbContext(typeof(LoadManagerPrototypeContext))]
-    partial class LoadManagerPrototypeContextModelSnapshot : ModelSnapshot
+    [Migration("20210722153559_mygodpleasebefinal")]
+    partial class mygodpleasebefinal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,14 +100,6 @@ namespace LoadManagerPrototype.Migrations
                     b.Property<int>("DeliveryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
                     b.HasKey("Id");
 
                     b.HasIndex("CommodityId");
@@ -127,14 +121,6 @@ namespace LoadManagerPrototype.Migrations
 
                     b.Property<int>("PickupId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
@@ -215,8 +201,16 @@ namespace LoadManagerPrototype.Migrations
                     b.Property<bool>("OnSite")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("ShedId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<bool>("Unloaded")
                         .HasColumnType("bit");
@@ -373,8 +367,16 @@ namespace LoadManagerPrototype.Migrations
                     b.Property<DateTime>("PickDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("ShedId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
