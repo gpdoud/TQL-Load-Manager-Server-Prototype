@@ -4,14 +4,16 @@ using LoadManagerPrototype.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoadManagerPrototype.Migrations
 {
     [DbContext(typeof(LoadManagerPrototypeContext))]
-    partial class LoadManagerPrototypeContextModelSnapshot : ModelSnapshot
+    [Migration("20210722150822_carrierid")]
+    partial class carrierid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -515,7 +517,7 @@ namespace LoadManagerPrototype.Migrations
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Dispatcher", b =>
                 {
-                    b.HasOne("LoadManagerPrototype.Models.Carrier", "Carrier")
+                    b.HasOne("LoadManagerPrototype.Models.Carrier", null)
                         .WithMany("Dispatchers")
                         .HasForeignKey("CarrierId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -524,7 +526,7 @@ namespace LoadManagerPrototype.Migrations
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Driver", b =>
                 {
-                    b.HasOne("LoadManagerPrototype.Models.Carrier", "Carrier")
+                    b.HasOne("LoadManagerPrototype.Models.Carrier", null)
                         .WithMany("Drivers")
                         .HasForeignKey("CarrierId")
                         .OnDelete(DeleteBehavior.Cascade)
