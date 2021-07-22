@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LoadManagerPrototype.Models
@@ -23,6 +24,9 @@ namespace LoadManagerPrototype.Models
         public string TrailerNumber { get; set; }
         public string Equipment { get; set; }
         public bool IsCckApproved { get; set; }
+        public int CarrierId { get; set; }
+        [JsonIgnore]
+        public Carrier Carrier { get; set; }
 
         public Driver()
         {
