@@ -24,6 +24,8 @@ namespace LoadManagerPrototype.Models
         public string Phone { get; set; }
         [StringLength(100)]
         public string Email { get; set; }
+        [StringLength(8)]
+        public string McNumber { get; set; }
 
         public virtual IEnumerable<Driver> Drivers { get; set; }
         public virtual IEnumerable<Dispatcher> Dispatchers { get; set; }

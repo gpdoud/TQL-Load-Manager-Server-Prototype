@@ -9,6 +9,16 @@
     <Compile Remove="Migrations\20210721133707_adding migration.Designer.cs" />
     <Compile Remove="Migrations\20210721160136_fixedstuff.cs" />
     <Compile Remove="Migrations\20210721160136_fixedstuff.Designer.cs" />
+    <Compile Remove="Migrations\20210721160805_noloadid.cs" />
+    <Compile Remove="Migrations\20210721160805_noloadid.Designer.cs" />
+    <Compile Remove="Migrations\20210721194119_removeloadidagain.cs" />
+    <Compile Remove="Migrations\20210721194119_removeloadidagain.Designer.cs" />
+    <Compile Remove="Migrations\20210721200727_removeloadidagain2.cs" />
+    <Compile Remove="Migrations\20210721200727_removeloadidagain2.Designer.cs" />
+    <Compile Remove="Migrations\20210722132535_hopefullyfinal.cs" />
+    <Compile Remove="Migrations\20210722132535_hopefullyfinal.Designer.cs" />
+    <Compile Remove="Migrations\20210722140615_finalplease.cs" />
+    <Compile Remove="Migrations\20210722140615_finalplease.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +28,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

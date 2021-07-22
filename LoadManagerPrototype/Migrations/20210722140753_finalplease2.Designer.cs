@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoadManagerPrototype.Migrations
 {
     [DbContext(typeof(LoadManagerPrototypeContext))]
-    [Migration("20210721160805_noloadid")]
-    partial class noloadid
+    [Migration("20210722140753_finalplease2")]
+    partial class finalplease2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,10 @@ namespace LoadManagerPrototype.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("McNumber")
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -59,7 +63,80 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("McNumber")
+                        .IsUnique()
+                        .HasFilter("[McNumber] IS NOT NULL");
+
                     b.ToTable("Carrier");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Commodity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Commodity");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.CommodityDelivery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CommodityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeliveryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommodityId");
+
+                    b.HasIndex("DeliveryId");
+
+                    b.ToTable("CommodityDelivery");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.CommodityPickup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CommodityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PickupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommodityId");
+
+                    b.HasIndex("PickupId");
+
+                    b.ToTable("CommodityPickup");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Customer", b =>
@@ -82,10 +159,18 @@ namespace LoadManagerPrototype.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(2)")
@@ -106,6 +191,37 @@ namespace LoadManagerPrototype.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Delivery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DropDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("LoadId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("OnSite")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ShedId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Unloaded")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoadId");
+
+                    b.HasIndex("ShedId");
+
+                    b.ToTable("Delivery");
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Dispatcher", b =>
@@ -227,6 +343,37 @@ namespace LoadManagerPrototype.Migrations
                     b.ToTable("Load");
                 });
 
+            modelBuilder.Entity("LoadManagerPrototype.Models.Pickup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("LoadId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Loaded")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("OnSite")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PickDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ShedId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoadId");
+
+                    b.HasIndex("ShedId");
+
+                    b.ToTable("Pickup");
+                });
+
             modelBuilder.Entity("LoadManagerPrototype.Models.Shed", b =>
                 {
                     b.Property<int>("Id")
@@ -242,13 +389,22 @@ namespace LoadManagerPrototype.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<int?>("LoadId")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Instructions")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(2)")
@@ -259,8 +415,6 @@ namespace LoadManagerPrototype.Migrations
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LoadId");
 
                     b.ToTable("Shed");
                 });
@@ -292,6 +446,10 @@ namespace LoadManagerPrototype.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
@@ -299,7 +457,40 @@ namespace LoadManagerPrototype.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.CommodityDelivery", b =>
+                {
+                    b.HasOne("LoadManagerPrototype.Models.Commodity", "commodity")
+                        .WithMany()
+                        .HasForeignKey("CommodityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LoadManagerPrototype.Models.Delivery", "delivery")
+                        .WithMany("CommodityDeliveries")
+                        .HasForeignKey("DeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.CommodityPickup", b =>
+                {
+                    b.HasOne("LoadManagerPrototype.Models.Commodity", "commodity")
+                        .WithMany()
+                        .HasForeignKey("CommodityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LoadManagerPrototype.Models.Pickup", "pickup")
+                        .WithMany("CommodityPickups")
+                        .HasForeignKey("PickupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LoadManagerPrototype.Models.Customer", b =>
@@ -307,6 +498,19 @@ namespace LoadManagerPrototype.Migrations
                     b.HasOne("LoadManagerPrototype.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LoadManagerPrototype.Models.Delivery", b =>
+                {
+                    b.HasOne("LoadManagerPrototype.Models.Load", null)
+                        .WithMany("Deliveries")
+                        .HasForeignKey("LoadId");
+
+                    b.HasOne("LoadManagerPrototype.Models.Shed", "shed")
+                        .WithMany()
+                        .HasForeignKey("ShedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -340,11 +544,17 @@ namespace LoadManagerPrototype.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LoadManagerPrototype.Models.Shed", b =>
+            modelBuilder.Entity("LoadManagerPrototype.Models.Pickup", b =>
                 {
                     b.HasOne("LoadManagerPrototype.Models.Load", null)
-                        .WithMany("Sheds")
+                        .WithMany("Pickups")
                         .HasForeignKey("LoadId");
+
+                    b.HasOne("LoadManagerPrototype.Models.Shed", "shed")
+                        .WithMany()
+                        .HasForeignKey("ShedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -33,5 +33,17 @@ namespace LoadManagerPrototype.Data
         public DbSet<LoadManagerPrototype.Models.Delivery> Delivery { get; set; }
 
         public DbSet<LoadManagerPrototype.Models.Pickup> Pickup { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.CommodityDelivery> CommodityDelivery { get; set; }
+
+        public DbSet<LoadManagerPrototype.Models.CommodityPickup> CommodityPickup { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>().HasIndex(p => p.Username).IsUnique();
+            builder.Entity<Carrier>().HasIndex(p => p.McNumber).IsUnique();
+        }
     }
+
 }

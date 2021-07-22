@@ -28,8 +28,6 @@ namespace LoadManagerPrototype.Models
         [StringLength(100)]
         public string Email { get; set; }
 
-        // Instruction box?
-
         public Shed()
         {
 

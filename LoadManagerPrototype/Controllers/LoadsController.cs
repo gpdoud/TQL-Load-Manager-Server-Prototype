@@ -27,10 +27,10 @@ namespace LoadManagerPrototype.Models
             return await _context.Load
                 .Include(c => c.Customer)
                 .Include(car => car.Carrier)
-                .Include(p => p.Pickups).ThenInclude(com => com.Commodities)
-                .Include(p => p.Pickups).ThenInclude(s => s.Sheds)
-                .Include(d => d.Deliveries).ThenInclude(com => com.Commodities)
-                .Include(d => d.Deliveries).ThenInclude(s => s.Sheds).ToListAsync();
+                .Include(p => p.Pickups).ThenInclude(cp => cp.CommodityPickups)
+                .Include(p => p.Pickups).ThenInclude(s => s.shed)
+                .Include(d => d.Deliveries).ThenInclude(cd => cd.CommodityDeliveries)
+                .Include(d => d.Deliveries).ThenInclude(s => s.shed).ToListAsync();
         }
 
         // GET: api/Loads/5
@@ -40,10 +40,10 @@ namespace LoadManagerPrototype.Models
             var load = await _context.Load
                 .Include(c => c.Customer)
                 .Include(car => car.Carrier)
-                .Include(p => p.Pickups).ThenInclude(com => com.Commodities)
-                .Include(p => p.Pickups).ThenInclude(s => s.Sheds)
-                .Include(d => d.Deliveries).ThenInclude(com => com.Commodities)
-                .Include(d => d.Deliveries).ThenInclude(s => s.Sheds).FirstOrDefaultAsync(i => i.Id == id);
+                .Include(p => p.Pickups).ThenInclude(cp => cp.CommodityPickups)
+                .Include(p => p.Pickups).ThenInclude(s => s.shed)
+                .Include(d => d.Deliveries).ThenInclude(cd => cd.CommodityDeliveries)
+                .Include(d => d.Deliveries).ThenInclude(s => s.shed).FirstOrDefaultAsync(i => i.Id == id);
 
             if (load == null)
             {
