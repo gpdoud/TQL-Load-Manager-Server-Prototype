@@ -4,14 +4,16 @@ using LoadManagerPrototype.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoadManagerPrototype.Migrations
 {
     [DbContext(typeof(LoadManagerPrototypeContext))]
-    partial class LoadManagerPrototypeContextModelSnapshot : ModelSnapshot
+    [Migration("20210722132942_hopefullyfinal2")]
+    partial class hopefullyfinal2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,10 +40,6 @@ namespace LoadManagerPrototype.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<string>("McNumber")
-                        .HasColumnType("nvarchar(8)")
-                        .HasMaxLength(8);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -60,10 +58,6 @@ namespace LoadManagerPrototype.Migrations
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("McNumber")
-                        .IsUnique()
-                        .HasFilter("[McNumber] IS NOT NULL");
 
                     b.ToTable("Carrier");
                 });
@@ -454,9 +448,6 @@ namespace LoadManagerPrototype.Migrations
                         .HasMaxLength(30);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Username")
-                        .IsUnique();
 
                     b.ToTable("User");
                 });

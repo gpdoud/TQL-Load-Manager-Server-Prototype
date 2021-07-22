@@ -20,6 +20,21 @@ namespace LoadManagerPrototype.Models
             _context = context;
         }
 
+        //Login: api/Users/username/password
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<User>> Login(string username, string password)
+        {
+            {
+                var info = await _context.User
+                    .SingleOrDefaultAsync(e => e.Username == username && e.Password == password);
+                if (info == null)
+                {
+                    return NotFound();
+                }
+                return info;
+            }
+        }
+
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()

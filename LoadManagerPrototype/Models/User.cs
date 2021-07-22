@@ -11,7 +11,7 @@ namespace LoadManagerPrototype.Models
         public int Id { get; set; }
 
         [Required, StringLength(30)]
-        public string Username { get; set; }     //needs to be unique
+        public string Username { get; set; } 
         [Required, StringLength(30)]
         public string Password { get; set; }
         [StringLength(30)]
