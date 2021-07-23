@@ -1,4 +1,4 @@
---U[date LmDb]
+--Inserting data into LmDb
 --Insert Users:
 USE [LmDb]
 GO
@@ -9,20 +9,22 @@ INSERT INTO [dbo].[User]
            ,[Firstname]
            ,[Lastname]
            ,[Email]
+           ,[Phone]
            ,[IsAdmin])
-    VALUES
-('ldodson','pw1','Larry','Dodson','Ldodson@tql.com',0),
-('zpoindexter','pw2','Zhaquon','Poindexter','zpoindexter@tql.com',1),
-('mluedtke','pw3','Matt','Luedtke','mluedtke@tql.com',0),
-('jatkins','pw4','John','Atkins','jatkins@tql.co',0),
-('msanchez','pw5','Matt','Sanchez','msanchez@tql.com',0),
-('ctraylor','pw6','Charlie','Traylor','ctraylor@tql.com',0),
-('mswain','pw7','Mattea','Swain','mswain@tql.com',0),
-('jnorth','pw8','Jeff','North','jeffnorth@tql.com',0),
-('sgeorge','pw9','Sarah','George','sgeorge@tql.com',0),
-('krains','pw10','Katelyn','Rains','krains@tql.com',0)
+     VALUES
+     ('ldodson','pw1','Larry','Dodson','Ldodson@tql.com','254-647-6892',0),
+('zpoindexter','pw2','Zhaquon','Poindexter','zpoindexter@tql.com','254-647-6893',1),
+('mluedtke','pw3','Matt','Luedtke','mluedtke@tql.com','254-647-6894',0),
+('jatkins','pw4','John','Atkins','jatkins@tql.co','254-647-6895',0),
+('msanchez','pw5','Matt','Sanchez','msanchez@tql.com','254-647-6896',0),
+('ctraylor','pw6','Charlie','Traylor','ctraylor@tql.com','254-647-6897',0),
+('mswain','pw7','Mattea','Swain','mswain@tql.com','254-647-6898',0),
+('jnorth','pw8','Jeff','North','jeffnorth@tql.com','254-647-6899',0),
+('sgeorge','pw9','Sarah','George','sgeorge@tql.com','254-647-6900',0),
+('krains','pw10','Katelyn','Rains','krains@tql.com','254-647-6901',0)
+
 GO
---*********************************************
+--************************************
 --Insert Customers:
 USE [LmDb]
 GO
@@ -35,30 +37,33 @@ INSERT INTO [dbo].[Customer]
            ,[State]
            ,[Zip]
            ,[Status]
+           ,[Phone]
+           ,[Email]
            ,[UserId])
      VALUES
-('Murphy Tomatoes (Dallas)','MURP','1184 113th st','Grand Prairie','TX','75050',1,1),
-('Coast To Coast Equipment','COAS','4800 Ruffini Court SE','Cleveland','OH','44105',1,2),
-('Sabol and Rice Inc','SABO','PO Box 25957','Salt Lake City','UT','84125',1,3),
-('TRAILER SOURCE, INC','TRAI','14007 131ST ST E','Orting','WA','98360',1,1),
-('JAEMAR SALES','JAEM','5939 Darwin Court, Suite 106','Carlsbad','CA','92008',1,2),
-('IPS Industries','IPS ','12641 166th St','Cerritos','CA','90703',1,4),
-('Hudson Valley Farms (QC)','HUDS','69-228 Rue Principale','St-Louis-De-Gonzague','QC','J0S 1T0   ',1,5),
-('PLASTIRUN CORP','PLAS','70 B Emjay Blvd','Brentwood','NY','11717',1,2),
-('DSV AIR & SEA INC (SLC)','DSV ','1545 S 4800 W','Salt Lake City','UT','84104',1,6),
-('Q & B FOODS','Q & ','15547 First Street','Irwindale','CA','91706',1,7),
-('OCONEE SAND AND GRAVEL','OCON','797 harmony rd','Eatonton','GA','31024',1,8),
-('AMERICAN YEAST SALES INC','AMER','331 Commerce Way, STE 2','Pembroke','NH','3275',1,9),
-('DYNASOL LLC','DYNA','14340 Torrey Chase Blvd','Houston','TX','77014',1,10),
-('Asset Store LLC','ASSE','2811 Sisson St','Baltimore','MD','21211',1,9),
-('WILBERT FUNERAL SERVICES','WILB','2913 Gardner Rd','Broadview','IL','60155',1,5),
-('PLASTICS EXCHANGE','PLAS','28230 N. 69th St.','Scottsdale','AZ','85266',1,6),
-('SOUTHEAST ENVIROTX','SOUT','8725 CALERA DRIVE','Austin','TX','78735',1,9),
-('BRANDT CONSOLIDATED (FRESNO)','BRAN','PO Box 3500','Fresno','CA','93745',1,4),
-('JOFRAN INC','JOFR','One Jofran Way','Norfolk','MA','2056',1,1),
-('SOUTHEAST ENVIROTX','SOUT','8725 CALERA DRIVE','Austin','TX','78735',1,8)
+         ('Murphy Tomatoes (Dallas)','MURP','1184 113th st','Grand Prairie','TX','75050',1,'123-658-2538','Murp@cust.com',1),
+('Coast To Coast Equipment','COAS','4800 Ruffini Court SE','Cleveland','OH','44105',1,'123-658-2539','Coas@cust.com',2),
+('Sabol and Rice Inc','SABO','PO Box 25957','Salt Lake City','UT','84125',1,'123-658-2540','Sabo@cust.com',3),
+('TRAILER SOURCE, INC','TRAI','14007 131ST ST E','Orting','WA','98360',1,'123-658-2541','TRAI@cust.com',4),
+('JAEMAR SALES','JAEM','5939 Darwin Court, Suite 106','Carlsbad','CA','92008',1,'123-658-2542','JAEM@cust.com',5),
+('IPS Industries','IPSI','12641 166th St','Cerritos','CA','90703',1,'123-658-2543','IPS @cust.com',6),
+('Hudson Valley Farms (QC)','HUDS','69-228 Rue Principale','St-Louis-De-Gonzague','QC','J0S 1T0   ',1,'123-658-2544','Huds@cust.com',7),
+('PLASTIRUN CORP','PLAS','70 B Emjay Blvd','Brentwood','NY','11717',1,'123-658-2545','PLAS@cust.com',8),
+('DSV AIR & SEA INC (SLC)','DSV ','1545 S 4800 W','Salt Lake City','UT','84104',1,'123-658-2546','DSV @cust.com',9),
+('Q & B FOODS','QBFO','15547 First Street','Irwindale','CA','91706',1,'123-658-2547','Q&B@cust.com',10),
+('OCONEE SAND AND GRAVEL','OCON','797 harmony rd','Eatonton','GA','31024',1,'123-658-2548','OCON@cust.com',2),
+('AMERICAN YEAST SALES INC','AMER','331 Commerce Way, STE 2','Pembroke','NH','3275',1,'123-658-2549','AMER@cust.com',3),
+('DYNASOL LLC','DYNA','14340 Torrey Chase Blvd','Houston','TX','77014',1,'123-658-2550','DYNA@cust.com',8),
+('Asset Store LLC','ASSE','2811 Sisson St','Baltimore','MD','21211',1,'123-658-2551','Asse@cust.com',9),
+('WILBERT FUNERAL SERVICES','WILB','2913 Gardner Rd','Broadview','IL','60155',1,'123-658-2552','WILB@cust.com',3),
+('PLASTICS EXCHANGE','PLAS','28230 N. 69th St.','Scottsdale','AZ','85266',1,'123-658-2553','PLAS@cust.com',1),
+('SOUTHEAST ENVIROTX','SOUT','8725 CALERA DRIVE','Austin','TX','78735',1,'123-658-2554','SOUT@cust.com',4),
+('BRANDT CONSOLIDATED (FRESNO)','BRAN','PO Box 3500','Fresno','CA','93745',1,'123-658-2555','BRAN@cust.com',6),
+('JOFRAN INC','JOFR','One Jofran Way','Norfolk','MA','2056',1,'123-658-2556','JOFR@cust.com',5),
+('SOUTHEAST ENVIROTX','SOUT','8725 CALERA DRIVE','Austin','TX','78735',1,'123-658-2557','SOUT@cust.com',7)
+
 GO
---***************************************************
+--*********************************
 --Insert Carriers:
 USE [LmDb]
 GO
@@ -70,31 +75,63 @@ INSERT INTO [dbo].[Carrier]
            ,[State]
            ,[Zip]
            ,[Phone]
-           ,[Email])
+           ,[Email]
+           ,[McNumber])
      VALUES
-('Z06 Trucking Llc (tx)','205 W Dicker Dr.','Pharr','TX','78577','956-460-0325','z06truckingllc@gmail.com'),
-('New Nation Carriers Inc','15857 SW 44TH ST','MIAMI','FL','33185','305-924-4008','newnationcarriers@gmail.com'),
-('Universe Carrier Inc','3542 N NEWCASTLE AVE','CHICAGO','IL','60634','773-577-5795','andrewt@universecarrier.com'),
-('Lakeshore Transport','221 MAIN ST','NEW TOWN','ND','58763','701-537-4606','lakeshoretransport@gmail.com'),
-('Jd Express (ar)','2413 S 14TH STREET','ROGERS','AR','72758','479-619-5298','jdexpress2014@hotmail.com'),
-('Egl Logistics (ca)','600 w. broadway st suite #100','GLENDALE','CA','91204','310-919-5550','khris@egllogistics.net'),
-('South Simcoe Freight','87 WEBB ST','BRADFORD','ON','L3Z 0R1   ','905-853-8396','ssfltd2004@gmail.com'),
-('Almax Logistics Llc','99 BERG AVENUE','KINGS PARK','NY','11754','631-888-4852','almaxnyc@gmail.com'),
-('Ac Transportation Llc','588 W 400 S STE 300','LINDON','UT','84042','801-226-0747','ivan@silverhawkfreight.com'),
-('Tung Air Transport Ltd.','14 LUCINDA CRT','BRAMPTON','ON','L6P 0K6   ','905-913-0101','dispatch@tungair.com'),
-('Hanging R Trucking','114803 S 4200 RD','CHECOTAH','OK','74426','918-316-1473','Aarichardson76@yahoo.com'),
-('Heacock Freight Llc','375 JOHNSON AVE N','TALLADEGA','AL','35160','256-362-4124','zach.calhoun@heacfreight.com'),
-('Dev Trucking Llc','10823 FALLBROOK DR','HOUSTON','TX','77064','832-668-6577','devtrucking7@gmail.com'),
-('Mmh Simba Logistics','28 EDGEWATER DR','POLAND','OH','44514','330-942-2991','carrire@mmhsimba.com'),
-('Senora Transportation','1850 ASBURY CIRCLE DR APT 304','JOLIET','IL','60435-3610','815-582-5443','arthurjo@yahoo.com'),
-('Ventura Transportation','5655 GUHN RD','HOUSTON','TX','77040','713-425-0127','venturatrans@gmail.com'),
-('Gt Express Inc (il)','8500 W 191st #1','Mokena','IL','60448','779-333-7283','george@gtexpressinc.com'),
-('Sandhu Carrier (ca)','781 E SKYLAR AVE','FOWLER','CA','93625','556-614-4542','Raj.johal@mail.com'),
-('Robert Yates Trucking','20800 KELLY LN','PERRIS','CA','92570','951-486-8028','RobertYYates@gmail.com'),
-('Jmb Cruz Trucking Inc','13014 ELAINE RD','HOUSTON','TX','77047','281-773-3039','bscruz05@yahoo.com')
+        ('Z06 Trucking Llc (tx)','205 W Dicker Dr.','Pharr','TX','78577','956-460-0325','z06truckingllc@gmail.com','1234568'),
+('New Nation Carriers Inc (fl)','15857 SW 44TH ST','MIAMI','FL','33185','305-924-4008','newnationcarriers@gmail.com','1234569'),
+('Universe Carrier Inc (il)','3542 N NEWCASTLE AVE','CHICAGO','IL','60634','773-577-5795','andrewt@universecarrier.com','1234570'),
+('Lakeshore Transport (nd)','221 MAIN ST','NEW TOWN','ND','58763','701-537-4606','lakeshoretransport2019@gmail.com','1234571'),
+('Jd Express (ar)','2413 S 14TH STREET','ROGERS','AR','72758','479-619-5298','jdexpress2014@hotmail.com','1234572'),
+('Egl Logistics (ca)','600 w. broadway st suite #100','GLENDALE','CA','91204','310-919-5550','khris@egllogistics.net','1234573'),
+('South Simcoe Freight Ltd (on)','87 WEBB ST','BRADFORD','ON','L3Z 0R1   ','905-853-8396','ssfltd2004@gmail.com','1234574'),
+('Almax Logistics Llc (ny)','99 BERG AVENUE','KINGS PARK','NY','11754','631-888-4852','almaxnyc@gmail.com','1234575'),
+('Ac Transportation Llc (ut)','588 W 400 S STE 300','LINDON','UT','84042','801-226-0747','ivan@silverhawkfreight.com','1234576'),
+('Tung Air Transport Ltd. (on)(on)','14 LUCINDA CRT','BRAMPTON','ON','L6P 0K6   ','905-913-0101','dispatch@tungair.com','1234577'),
+('Hanging R Trucking (ok)','114803 S 4200 RD','CHECOTAH','OK','74426','918-316-1473','Aarichardson76@yahoo.com','1234578'),
+('Heacock Freight Llc (al)','375 JOHNSON AVE N','TALLADEGA','AL','35160','256-362-4124','zach.calhoun@heacockfreight.com','1234579'),
+('Dev Trucking Llc (tx)','10823 FALLBROOK DR','HOUSTON','TX','77064','832-668-6577','devtrucking7@gmail.com','1234580'),
+('Mmh Simba Logistics Llp (oh)','28 EDGEWATER DR','POLAND','OH','44514','330-942-2991','carrire@mmhsimba.com','1234581'),
+('Senora Transportation Inc (il)','1850 ASBURY CIRCLE DR APT 304','JOLIET','IL','60435-3610','815-582-5443','arthurjohnson1971@yahoo.com','1234582'),
+('Ventura Transportation Inc (tx)','5655 GUHN RD','HOUSTON','TX','77040','713-425-0127','venturatransportationinc@gmail.com','1234583'),
+('Gt Express Inc (il)','8500 W 191st #1','Mokena','IL','60448','779-333-7283','george@gtexpressinc.com','1234584'),
+('Sandhu Carrier (ca)','781 E SKYLAR AVE','FOWLER','CA','93625','556-614-4542','Raj.johal@mail.com','1234585'),
+('Robert Yates Trucking (ca)','20800 KELLY LN','PERRIS','CA','92570','951-486-8028','RobertYYatesTrucking1@gmail.com','1234586'),
+('Jmb Cruz Trucking Inc (tx)','13014 ELAINE RD','HOUSTON','TX','77047','281-773-3039','bscruz05@yahoo.com','1234587')
+  
 GO
---*************************************************
---Insert Sheds:
+--***********************************
+--Insert Commodity:
+USE [LmDb]
+GO
+
+INSERT INTO [dbo].[Commodity]
+           ([Name])
+     VALUES
+           ('Plastic bags'),
+('Potatoes'),
+('Fresh juice'),
+('Dry Food'),
+('Air compressors'),
+('Paper Materials and Products'),
+('Fresh vegetables'),
+('recycled rubber'),
+('Wooden doors'),
+('Furniture'),
+('Paper Materials and Products'),
+('Tofu'),
+('Mulch'),
+('Furniture'),
+('Celery'),
+('Lettuces'),
+('Pears'),
+('Frozen French Fries'),
+('Plastic bags'),
+('Fibers')
+
+GO
+--*********************************
+--Insert Shed:
 USE [LmDb]
 GO
 
@@ -103,46 +140,92 @@ INSERT INTO [dbo].[Shed]
            ,[Address]
            ,[City]
            ,[State]
-           ,[Zip])
+           ,[Zip]
+           ,[Instructions]
+           ,[Phone]
+           ,[Email])
      VALUES
-('MURPHY TOMATOES DFW (GRAND PRAIRIE,TX)','1184 113th St','Grand Prairie','TX','75050'),
-('(CORONA, CA) (CORONA, CA)','353 Meyer Circle','Corona','CA','92879'),
-('SABOL & RICE INC. (SALT LAKE CITY,UT)','1834 S 900 W','Salt Lake City','UT','84104'),
-('ABSOLUTE HONEY (MYLO,ND)','5126 88th St','Mylo','ND','58353'),
-('BLUE BUFFALO (JOPLIN, MO)','8101 E 32nd St.','Joplin','MO','64804'),
-('KROGER (PORTLAND,TN)','120 Kirby Dr','Portland','TN','37148'),
-('INTERNATIONAL WHOLESALE','24200 WEST OUTER DRIVE','ALLEN Park','MI','48101'),
-('SOLO STOVE (SALT LAKE CITY, UT)','5725 West Amelia Earhart Drive','Salt Lake City','UT','84116'),
-('IRWINDALE WAREHOUSE (IRWINDALE, CA)','15501 E. First St','Irwindale','CA','91706'),
-('OCONEE SAND AND GRAVEL (EATONTON,GA)','797 Harmony Rd','Eatonton','GA','31024'),
-('AMERICAN YEAST (MEMPHIS,TN)','251 Stiles Dr','Memphis','TN','38127'),
-('American Warehouse','1918 Collingsworth St','Houston','TX','77009'),
-('LOGANS INN (DANSVILLE, NY)','106 Clara barton St','Dansville','NY','14437'),
-('Wilbert Burial Vault (Indianapolis,IN)','2165 N Sherman Dr','Indianapolis','IN','46218'),
-('ATLANTA PLASTIC INJECTION MOLDING (ATLANTA, GA)','4401A Bankers Circle','Atlanta','GA','30360'),
-('TXDOT ROCKWALL, TX (ROCKWALL, TX)','901 E Interstate 30','Rockwall','TX','75087'),
-('BRANDT CONSOLIDATED, INC. (FRESNO,CA)','3654 S Willow Ave','Fresno','CA','93725'),
-('TXDOT ENNIS, TX (ENNIS, TX)','2000 S Kaufman St','Ennis','TX','75119'),
-('FRESH VEGETABLES (MCALLEN, TX)','2501 W Military Hwy','McAllen','TX','78503'),
-('RIVER CITY EQUIPMENT (SMYRNA, TN)','211 Threet Industrial Rd','Smyrna','TN','37167'),
-('RAPPID ENGINEERING (COMSTOCK,MI)','1100 seven mile rd. nw','Comstock','MI','49041'),
-('TRAILER SOURCE','14007 131st E','Orting','WA','98360'),
-('JAEMAR (VERNON,CA)','3285 E Vernon Ave','Vernon','CA','90058'),
-('Spectrum Plastics(ca) (Cerritos,CA)','12850 Midway Pl','Cerritos','CA','90703'),
-('Plastirun Corp (Brentwood,NY)','70 Emjay Blvd','Brentwood','NY','11717'),
-('DREW LOGISTICS - RANCHO DOMINGUEZ #2 (COMPTON, CA)','3040 E Victoria St','Compton','CA','90221'),
-('ROCK IT NATURAL STONE (LAMAR,AR)','663 Harris Lane','Lamar','AR','72846'),
-('NATURAL SODA WAREHOUSE (RIFLE,CO)','3051 W 2nd St','Rifle','CO','81650'),
-('KTN EDISON (EDISON, NJ)','8 Greek Lane','Edison','NJ','8817'),
-('WESTIN ATLANTA AIRPORT (ATLANTA, GA)','4736 Best Road','Atlanta','GA','30337'),
-('Wilbert Funeral Services  (Broadview,IL)','2913 Gardner Rd','Broadview','IL','60155'),
-('VEE EXPRESS (HOUSTON, TX)','8503 City Park Loop','Houston','TX','77013'),
-('UNITED SALT CORPORATION (CARLSBAD, NM)','1434 Potash Mines Road','Carlsbad','NM','88220'),
-('US BORAX (BORON,CA)','14486 Borax Rd','Boron','CA','93516'),
-('JOFRAN SALES (CA) (MORENO VALLEY, CA)','24901 San Michele Rd','Moreno Valley','CA','92551');
+   ('MURPHY TOMATOES DFW (GRAND PRAIRIE,TX)','1184 113th St','Grand Prairie','TX','75050','Sample Instructions','123-654-8946','MURP@shed.com'),
+('(CORONA, CA) (CORONA, CA)','353 Meyer Circle','Corona','CA','92879','Sample Instructions','123-654-8947','COR@shed.com'),
+('SABOL & RICE INC. (SALT LAKE CITY,UT)','1834 S 900 W','Salt Lake City','UT','84104','Sample Instructions','123-654-8948','SABO@shed.com'),
+('ABSOLUTE HONEY (MYLO,ND)','5126 88th St','Mylo','ND','58353','Sample Instructions','123-654-8949','ABSO@shed.com'),
+('BLUE BUFFALO (JOPLIN, MO)','8101 E 32nd St.','Joplin','MO','64804','Sample Instructions','123-654-8950','BLUE@shed.com'),
+('KROGER (PORTLAND,TN)','120 Kirby Dr','Portland','TN','37148','Sample Instructions','123-654-8951','KROG@shed.com'),
+('INTERNATIONAL WHOLESALE','24200 WEST OUTER DRIVE','ALLEN Park','MI','48101','Sample Instructions','123-654-8952','INTE@shed.com'),
+('SOLO STOVE (SALT LAKE CITY, UT)','5725 West Amelia Earhart Drive','Salt Lake City','UT','84116','Sample Instructions','123-654-8953','SOLO@shed.com'),
+('IRWINDALE WAREHOUSE (IRWINDALE, CA)','15501 E. First St','Irwindale','CA','91706','Sample Instructions','123-654-8954','IRWI@shed.com'),
+('OCONEE SAND AND GRAVEL (EATONTON,GA)','797 Harmony Rd','Eatonton','GA','31024','Sample Instructions','123-654-8955','OCON@shed.com'),
+('AMERICAN YEAST (MEMPHIS,TN)','251 Stiles Dr','Memphis','TN','38127','Sample Instructions','123-654-8956','AMER@shed.com'),
+('American Warehouse','1918 Collingsworth St','Houston','TX','77009','Sample Instructions','123-654-8957','Amer@shed.com'),
+('LOGANS INN (DANSVILLE, NY)','106 Clara barton St','Dansville','NY','14437','Sample Instructions','123-654-8958','LOGA@shed.com'),
+('Wilbert Burial Vault (Indianapolis,IN)','2165 N Sherman Dr','Indianapolis','IN','46218','Sample Instructions','123-654-8959','Wilb@shed.com'),
+('ATLANTA PLASTIC INJECTION MOLDING (ATLANTA, GA)','4401A Bankers Circle','Atlanta','GA','30360','Sample Instructions','123-654-8960','ATLA@shed.com'),
+('TXDOT ROCKWALL, TX (ROCKWALL, TX)','901 E Interstate 30','Rockwall','TX','75087','Sample Instructions','123-654-8961','TXDO@shed.com'),
+('BRANDT CONSOLIDATED, INC. (FRESNO,CA)','3654 S Willow Ave','Fresno','CA','93725','Sample Instructions','123-654-8962','BRAN@shed.com'),
+('TXDOT ENNIS, TX (ENNIS, TX)','2000 S Kaufman St','Ennis','TX','75119','Sample Instructions','123-654-8963','TXDO@shed.com'),
+('FRESH VEGETABLES (MCALLEN, TX)','2501 W Military Hwy','McAllen','TX','78503','Sample Instructions','123-654-8964','FRES@shed.com'),
+('RIVER CITY EQUIPMENT (SMYRNA, TN)','211 Threet Industrial Rd','Smyrna','TN','37167','Sample Instructions','123-654-8965','RIVE@shed.com'),
+('RAPPID ENGINEERING (COMSTOCK,MI)','1100 seven mile rd. nw','Comstock','MI','49041','Sample Instructions','123-654-8966','RAPP@shed.com'),
+('TRAILER SOURCE','14007 131st E','Orting','WA','98360','Sample Instructions','123-654-8967','TRAI@shed.com'),
+('JAEMAR (VERNON,CA)','3285 E Vernon Ave','Vernon','CA','90058','Sample Instructions','123-654-8968','JAEM@shed.com'),
+('Spectrum Plastics(ca) (Cerritos,CA)','12850 Midway Pl','Cerritos','CA','90703','Sample Instructions','123-654-8969','Spec@shed.com'),
+('Plastirun Corp (Brentwood,NY)','70 Emjay Blvd','Brentwood','NY','11717','Sample Instructions','123-654-8970','Plas@shed.com'),
+('DREW LOGISTICS - RANCHO DOMINGUEZ #2 (COMPTON, CA)','3040 E Victoria St','Compton','CA','90221','Sample Instructions','123-654-8971','DREW@shed.com'),
+('ROCK IT NATURAL STONE (LAMAR,AR)','663 Harris Lane','Lamar','AR','72846','Sample Instructions','123-654-8972','ROCK@shed.com'),
+('NATURAL SODA WAREHOUSE (RIFLE,CO)','3051 W 2nd St','Rifle','CO','81650','Sample Instructions','123-654-8973','NATU@shed.com'),
+('KTN EDISON (EDISON, NJ)','8 Greek Lane','Edison','NJ','8817','Sample Instructions','123-654-8974','KTN @shed.com'),
+('WESTIN ATLANTA AIRPORT (ATLANTA, GA)','4736 Best Road','Atlanta','GA','30337','Sample Instructions','123-654-8975','WEST@shed.com'),
+('Wilbert Funeral Services  (Broadview,IL)','2913 Gardner Rd','Broadview','IL','60155','Sample Instructions','123-654-8976','Wilb@shed.com'),
+('VEE EXPRESS (HOUSTON, TX)','8503 City Park Loop','Houston','TX','77013','Sample Instructions','123-654-8977','VEE @shed.com'),
+('UNITED SALT CORPORATION (CARLSBAD, NM)','1434 Potash Mines Road','Carlsbad','NM','88220','Sample Instructions','123-654-8978','UNIT@shed.com'),
+('US BORAX (BORON,CA)','14486 Borax Rd','Boron','CA','93516','Sample Instructions','123-654-8979','USB@shed.com'),
+('JOFRAN SALES (CA) (MORENO VALLEY, CA)','24901 San Michele Rd','Moreno Valley','CA','92551','Sample Instructions','123-654-8980','JOFR@shed.com')
+      
+ 
 GO
---****************************************************
---Insert Dispatcher:
+--*************************
+--Insert Driver:
+USE [LmDb]
+GO
+
+INSERT INTO [dbo].[Driver]
+           ([Firstname]
+           ,[Lastname]
+           ,[Phone]
+           ,[Email]
+           ,[TruckNumber]
+           ,[TrailerNumber]
+           ,[Equipment]
+           ,[IsCckApproved]
+           ,[CarrierId])
+     VALUES
+         ('Bob','Driverman','123-456-7891','bdrive@truck.com','1234','4567','Truck',1,1),
+('Bella','Bailey','156-456-7865','BBailey@truck.com','4513','546','Truck',1,2),
+('Bernadette','Baker','156-456-7866','BBaker@truck.com','1489','14127','Truck',1,3),
+('Carol','Ball','156-456-7867','CBall@truck.com','9564','415102','Truck',1,4),
+('Caroline','Bell','156-456-7868','CBell@truck.com','1485','1261','Truck',0,5),
+('Carolyn','Berry','156-456-7869','CBerry@truck.com','7564','86415','Truck',0,6),
+('Chloe','Black','156-456-7870','CBlack@truck.com','4186','64510132','Truck',1,7),
+('Claire','Blake','156-456-7871','CBlake@truck.com','4899','5525','Truck',1,8),
+('Deirdre','Bond','156-456-7872','DBond@truck.com','2314','24416','Truck',1,9),
+('Diana','Bower','156-456-7873','DBower@truck.com','6315','58612','Truck',1,10),
+('Diane','Brown','156-456-7874','DBrown@truck.com','4562','8641','Truck',1,11),
+('Colin','Buckland','156-456-7875','CBuckland@truck.com','7895','864','Truck',1,12),
+('Connor','Burgess','156-456-7876','CBurgess@truck.com','9865','85646','Truck',1,20),
+('Dan','Butler','156-456-7877','DButler@truck.com','1236','3123','Truck',1,19),
+('David','Cameron','156-456-7878','DCameron@truck.com','9856','5168','Truck',1,18),
+('Dominic','Campbell','156-456-7879','DCampbell@truck.com','3242','484513','Truck',1,2),
+('Dylan','Carr','156-456-7880','DCarr@truck.com','2312','486126','Truck',1,2),
+('Edward','Chapman','156-456-7881','EChapman@truck.com','9056','4564','Truck',1,17),
+('Eric','Churchill','156-456-7882','EChurchill@truck.com','6504','15105','Truck',1,13),
+('Evan','Clark','156-456-7883','EClark@truck.com','2253','15892','Truck',1,1),
+('Frank','Clarkson','156-456-7884','FClarkson@truck.com','9346','154123','Truck',1,12),
+('Gavin','Coleman','156-456-7885','GColeman@truck.com','7943','15453','Truck',1,9),
+('Gordon','Cornish','156-456-7886','GCornish@truck.com','4328','14541','Truck',1,14)
+ 
+GO
+--****************************
+--Insert Dispatch:
 USE [LmDb]
 GO
 
@@ -177,47 +260,7 @@ INSERT INTO [dbo].[Dispatcher]
 ('Oliver','Roberts','123-456-7909','ORoberts@dispatch.com','364-564-9631',1,20)
 
 GO
---*************************************************
---Insert Drivers:
-GO
-
-INSERT INTO [dbo].[Driver]
-           ([Firstname]
-           ,[Lastname]
-           ,[Phone]
-           ,[Email]
-           ,[TruckNumber]
-           ,[TrailerNumber]
-           ,[Equipment]
-           ,[IsCckApproved]
-           ,[CarrierId])
-     VALUES
-       ('Bob','Driverman','123-456-7891','bdrive@truck.com','1234','4567','Truck',1,1),
-('Bella','Bailey','156-456-7865','BBailey@truck.com','4513','546','Truck',1,2),
-('Bernadette','Baker','156-456-7866','BBaker@truck.com','1489','14127','Truck',1,3),
-('Carol','Ball','156-456-7867','CBall@truck.com','9564','415102','Truck',1,4),
-('Caroline','Bell','156-456-7868','CBell@truck.com','1485','1261','Truck',0,5),
-('Carolyn','Berry','156-456-7869','CBerry@truck.com','7564','86415','Truck',0,6),
-('Chloe','Black','156-456-7870','CBlack@truck.com','4186','64510132','Truck',1,7),
-('Claire','Blake','156-456-7871','CBlake@truck.com','4899','5525','Truck',1,8),
-('Deirdre','Bond','156-456-7872','DBond@truck.com','2314','24416','Truck',1,9),
-('Diana','Bower','156-456-7873','DBower@truck.com','6315','58612','Truck',1,10),
-('Diane','Brown','156-456-7874','DBrown@truck.com','4562','8641','Truck',1,11),
-('Colin','Buckland','156-456-7875','CBuckland@truck.com','7895','864','Truck',1,12),
-('Connor','Burgess','156-456-7876','CBurgess@truck.com','9865','85646','Truck',1,20),
-('Dan','Butler','156-456-7877','DButler@truck.com','1236','3123','Truck',1,19),
-('David','Cameron','156-456-7878','DCameron@truck.com','9856','5168','Truck',1,18),
-('Dominic','Campbell','156-456-7879','DCampbell@truck.com','3242','484513','Truck',1,2),
-('Dylan','Carr','156-456-7880','DCarr@truck.com','2312','486126','Truck',1,2),
-('Edward','Chapman','156-456-7881','EChapman@truck.com','9056','4564','Truck',1,17),
-('Eric','Churchill','156-456-7882','EChurchill@truck.com','6504','15105','Truck',1,13),
-('Evan','Clark','156-456-7883','EClark@truck.com','2253','15892','Truck',1,1),
-('Frank','Clarkson','156-456-7884','FClarkson@truck.com','9346','154123','Truck',1,12),
-('Gavin','Coleman','156-456-7885','GColeman@truck.com','7943','15453','Truck',1,9),
-('Gordon','Cornish','156-456-7886','GCornish@truck.com','4328','14541','Truck',1,14)
-    
-GO
---**************************************************
+--*************************
 --Insert Loads:
 USE [LmDb]
 GO
@@ -227,28 +270,162 @@ INSERT INTO [dbo].[Load]
            ,[PayTruckRate]
            ,[CustomerBillRate]
            ,[CustomerId]
-           ,[CarrierId])
+           ,[CarrierId]
+           ,[UserId])
      VALUES
-          (12022573,1500,1800,1,1),
-(13458207,4950,5500,2,2),
-(15131596,6500,7600,3,3),
-(15357820,100,800,4,4),
-(15396118,3800,4100,5,5),
-(15463163,5100,6566,6,6),
-(15541263,425,970,7,7),
-(15577842,1450,1700,8,20),
-(15637171,2200,2500,9,18),
-(15641955,3200,3600,10,17),
-(15676683,1500,1750,11,5),
-(15703686,2700,3100,12,4),
-(15754649,3000,3492.72,2,1),
-(15867907,3000,3500,13,14),
-(15912349,1000,1225,4,1),
-(15929666,1775,2200,5,3),
-(15934521,900,1200,6,12),
-(15944389,900,1150,20,13),
-(15950184,1300,1500,19,15),
-(15960660,1075,1250,18,16)
- 
+     (12022573,1500,1800,1,1,1),
+(13458207,4950,5500,2,2,2),
+(15131596,6500,7600,3,3,3),
+(15357820,100,800,4,4,4),
+(15396118,3800,4100,5,5,5),
+(15463163,5100,6566,6,6,6),
+(15541263,425,970,7,7,7),
+(15577842,1450,1700,8,20,8),
+(15637171,2200,2500,9,18,9),
+(15641955,3200,3600,10,17,10),
+(15676683,1500,1750,11,5,2),
+(15703686,2700,3100,12,4,3),
+(15754649,3000,3492.72,2,1,2),
+(15867907,3000,3500,13,14,8),
+(15912349,1000,1225,4,1,4),
+(15929666,1775,2200,5,3,5),
+(15934521,900,1200,6,12,6),
+(15944389,900,1150,20,13,7),
+(15950184,1300,1500,19,15,5),
+(15960660,1075,1250,18,16,6)
+
+GO
+--*****************************
+--Insert Pickups:
+USE [LmDb]
 GO
 
+INSERT INTO [dbo].[Pickup]
+           ([PickDate]
+           ,[OnSite]
+           ,[Loaded]
+           ,[ShedId]
+           ,[LoadId])
+     VALUES
+ ('2021-05-29 00:00',1,1,1,1),
+('2021-06-05 00:00',1,1,2,2),
+('2021-06-07 00:00',1,1,3,3),
+('2021-06-09 00:00',1,1,4,4),
+('2021-06-11 00:00',1,1,5,5),
+('2021-06-13 00:00',1,1,6,6),
+('2021-06-15 00:00',1,1,7,7),
+('2021-06-17 00:00',1,1,8,8),
+('2021-07-12 00:00',1,1,9,9),
+('2021-07-14 00:00',1,1,10,10),
+('2021-07-16 00:00',1,1,11,11),
+('2021-07-18 00:00',1,1,12,12),
+('2021-07-20 00:00',1,1,13,13),
+('2021-07-22 00:00',1,1,14,14),
+('2021-07-24 00:00',1,0,15,15),
+('2021-07-26 00:00',0,0,16,16),
+('2021-07-28 00:00',0,0,17,17),
+('2021-07-30 00:00',0,0,18,18),
+('2021-08-01 00:00',0,0,19,19),
+('2021-08-03 00:00',0,0,20,20)
+          
+GO
+--*******************************
+--Insert Deliveries:
+USE [LmDb]
+GO
+
+INSERT INTO [dbo].[Delivery]
+           ([DropDate]
+           ,[OnSite]
+           ,[Unloaded]
+           ,[ShedId]
+           ,[LoadId])
+     VALUES
+ ('2021-06-01 00:00',1,1,20,1),
+('2021-06-08 00:00',1,1,19,2),
+('2021-06-10 00:00',1,1,18,3),
+('2021-06-12 00:00',1,1,17,4),
+('2021-06-14 00:00',1,1,15,5),
+('2021-06-16 00:00',1,1,12,6),
+('2021-06-18 00:00',1,1,11,7),
+('2021-06-20 00:00',1,1,10,8),
+('2021-07-15 00:00',1,1,8,9),
+('2021-07-17 00:00',1,1,7,10),
+('2021-07-19 00:00',1,1,2,11),
+('2021-07-21 00:00',1,1,1,12),
+('2021-07-23 00:00',1,0,3,13),
+('2021-07-25 00:00',0,0,5,14),
+('2021-07-27 00:00',0,0,6,15),
+('2021-07-29 00:00',0,0,4,16),
+('2021-07-31 00:00',0,0,9,17),
+('2021-08-02 00:00',0,0,2,18),
+('2021-08-04 00:00',0,0,1,19),
+('2021-08-06 00:00',0,0,3,20)
+
+GO
+--************************************
+--Insert Commodity Pickup:
+USE [LmDb]
+GO
+
+INSERT INTO [dbo].[CommodityPickup]
+           ([CommodityId]
+           ,[PickupId]
+           ,[Quantity]
+           ,[Unit])
+     VALUES
+(5,2,1,'truckload'),
+(7,4,1,'truckload'),
+(9,6,1,'truckload'),
+(11,8,15,'pallets'),
+(13,10,20,'pallets'),
+(15,12,13,'pallets'),
+(17,14,14,'pallets'),
+(19,16,20,'cases'),
+(3,18,21,'cases'),
+(1,20,22,'cases'),
+(2,1,23,'crates'),
+(8,3,18,'crates'),
+(6,5,1,'truckload'),
+(4,7,1,'truckload'),
+(10,9,17,'pallets'),
+(12,11,15,'pallets'),
+(14,13,30,'cartons'),
+(16,15,30,'cartons'),
+(18,17,20,'pallets'),
+(20,19,18,'pallets')
+GO
+
+--***************************
+--Insert Commodity Delivery
+USE [LmDb]
+GO
+
+INSERT INTO [dbo].[CommodityDelivery]
+           ([CommodityId]
+           ,[DeliveryId]
+           ,[Quantity]
+           ,[Unit])
+     VALUES
+(20,2,1,'truckload'),
+(1,4,1,'truckload'),
+(19,6,1,'truckload'),
+(18,8,15,'pallets'),
+(17,10,20,'pallets'),
+(16,12,13,'pallets'),
+(15,14,14,'pallets'),
+(13,16,20,'cases'),
+(9,18,21,'cases'),
+(8,20,22,'cases'),
+(6,1,23,'crates'),
+(3,3,18,'crates'),
+(5,5,1,'truckload'),
+(2,7,1,'truckload'),
+(1,9,17,'pallets'),
+(7,11,15,'pallets'),
+(11,13,30,'cartons'),
+(10,15,30,'cartons'),
+(14,17,20,'pallets'),
+(4,19,18,'pallets')
+
+GO
