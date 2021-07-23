@@ -17,6 +17,8 @@ namespace LoadManagerPrototype.Models
         public int ShedId { get; set; }
         public virtual Shed shed { get; set; }
 
+        public int LoadId { get; set; }
+
         public virtual IEnumerable<CommodityDelivery> CommodityDeliveries { get; set; }
 
         public Delivery()
