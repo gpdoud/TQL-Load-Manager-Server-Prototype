@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LoadManagerPrototype.Models
@@ -17,6 +18,8 @@ namespace LoadManagerPrototype.Models
         public virtual Shed shed { get; set; }
 
         public virtual IEnumerable<CommodityPickup> CommodityPickups { get; set; }
+
+        public int LoadId { get; set; }
 
         public Pickup()
         {
