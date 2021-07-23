@@ -18,6 +18,9 @@ namespace LoadManagerPrototype.Models
         [Column(TypeName="decimal(9,2)")]
         public decimal CustomerBillRate { get; set; }
 
+        [Required, StringLength(255)]
+        public string Status { get; set; }
+
         public int CustomerId { get; set; } // FK to customer
         public virtual Customer Customer { get; set; }
 
